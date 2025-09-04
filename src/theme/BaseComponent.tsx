@@ -19,11 +19,17 @@ const StyledBaseComponent = styled.div.withConfig({
   ${({ styleSheet }) => styleSheet && parseStyleSheet(styleSheet)}
 `;
 
-type BaseProps = React.ComponentProps<'div'> & StyledBaseProps;
 
-export const BaseComponent: React.FC<BaseProps> = ({
-  styleSheet = { fontFamily: theme?.typography?.fontFamily },
-  ...rest
-}) => {
-  return <StyledBaseComponent styleSheet={styleSheet} {...rest} />;
-};
+// utilitário de polimorfismo
+type AsProp<E extends React.ElementType> = {
+  as?: E;
+} & Omit<React.ComponentProps<E>, 'as' | 'color'> & StyledBaseProps;
+// (removi 'color' para evitar conflito com CSS; use em styleSheet)
+
+type BaseProps<E extends React.ElementType = 'div'> = AsProp<E>;
+
+export function BaseComponent<E extends React.ElementType = 'div'>(
+  { as, styleSheet = { fontFamily: theme?.typography?.fontFamily }, ...rest } : BaseProps<E>
+) {
+  return <StyledBaseComponent as={as} styleSheet={styleSheet} {...rest} />;
+}
