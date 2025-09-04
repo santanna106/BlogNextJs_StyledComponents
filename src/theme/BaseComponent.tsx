@@ -11,7 +11,11 @@ interface StyledBaseProps {
 /** Evita passar prop desconhecida para o DOM */
 const StyledBaseComponent = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== 'styleSheet',
-})<StyledBaseProps>`
+}) <StyledBaseProps>`
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  flex-shrink: 0;
   ${({ styleSheet }) => styleSheet && parseStyleSheet(styleSheet)}
 `;
 
