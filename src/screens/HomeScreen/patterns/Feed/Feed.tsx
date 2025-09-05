@@ -3,6 +3,8 @@ import Icon from "@src/components/Icon/Icon";
 import Text from "@src/components/Text/Text";
 import Image from "@src/components/Image/Image";
 import { ReactNode } from "react";
+import Link from "@src/components/Link/Link";
+import Button from "@src/components/Button/Button";
 
 interface FeedProps {
     children: ReactNode;
@@ -22,19 +24,25 @@ export default function Feed({ children }: FeedProps) {
 Feed.Header = () => {
     return (
         <Box
-            styleSheet={{
-                color: 'white',
-            }}
+
         >
-            <Image
-                styleSheet={{
-                    width:'128px',
-                    heigth:'128px',
-                    borderRadius:'100%'
-                }}
-                src="https://github.com/santanna106.png"
-                alt="Imagem de Perfil de Gabriel" />
-            <Icon name="youtube" size="xl" />
+            <Button.Base href="https://github.com/santanna106">
+
+
+                <Image
+                    styleSheet={{
+                        width: '128px',
+                        heigth: '128px',
+                        borderRadius: '100%'
+                    }}
+                    src="https://github.com/santanna106.png"
+                    alt="Imagem de Perfil de Gabriel"
+                />
+            </Button.Base>
+            <Link colorVariant="error" href="/sobre">
+                <Icon name="youtube" size="xl" />
+            </Link>
+
             <Icon name="twitter" size="xl" />
             <Icon name="instagram" size="xl" />
             <Icon name="github" size="xl" />

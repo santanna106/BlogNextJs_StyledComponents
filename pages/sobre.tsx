@@ -4,7 +4,7 @@ export default function AboutScreen() {
     return (
         <div>
             Olá
-            <Link href="/">
+            <Link colorVariant="neutral" href="/">
                 Voltar para home
             </Link>
         </div>

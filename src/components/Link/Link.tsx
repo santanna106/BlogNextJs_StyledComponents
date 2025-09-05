@@ -2,31 +2,83 @@
 import NextLink from 'next/link'
 import Text from '../Text/Text';
 import React from 'react';
+import { StyleSheet } from '@src/theme/StyleSheet';
+import theme, { ThemeTypographyVariants } from '@src/theme/theme';
 
 interface LinkProps {
     href: string;
-    children: React.ReactNode
+    children: React.ReactNode;
+    styleSheet?: StyleSheet;
+    variant?: ThemeTypographyVariants;
+    colorVariant: 'primary' | 'accent' | 'neutral' | 'success' | 'warning' | 'error';
+    colorVariantEnabled?: boolean;
 }
 
 
-const Link = React.forwardRef(({ href, children, ...props }: LinkProps,ref) => {
 
-    const isIExternalLink = href.startsWith('http');
+
+const Link = React.forwardRef(({
+    href,
+    children,
+    colorVariant ,
+    styleSheet,
+    colorVariantEnabled,
+    ...props }: LinkProps, ref) => {
+
+
+
+    let colorVariantIndex = 'primary'
+    if(colorVariant){
+        colorVariantIndex = colorVariant;
+    }
+    
+
+    const currentColorSet = {
+        color: theme.colors[ 'primary'].x500 ,
+        hover: {
+            color: theme.colors[ 'primary'].x400,
+        },
+        focus: {
+            color: theme.colors[ 'primary'].x600,
+        }
+    };
 
     const linkProps = {
+      
         ref,
         children,
         href,
+        styleSheet: {
+            textDecoration: 'none',
+            ...colorVariantEnabled && {
+                color: currentColorSet.color,
+            },
+            ...styleSheet,
+            hover: {
+                ...styleSheet?.hover,
+                ...colorVariantEnabled && {
+                    color: currentColorSet.focus.color,
+                }
+            },
+            focus: {
+                ...styleSheet?.focus,
+                ...colorVariantEnabled && {
+                    color: currentColorSet.focus.color,
+                }
+            },
+        },
         ...props
     }
 
-    if(isIExternalLink) return <Text {...linkProps}/>
 
 
     return (
         <NextLink href={href} passHref>
-            <Text 
-                {...linkProps}
+            <Text
+                {...{
+                    target: '_blank',
+                    ...linkProps,
+                }}
             >
                 {children}
             </Text>
@@ -34,6 +86,8 @@ const Link = React.forwardRef(({ href, children, ...props }: LinkProps,ref) => {
         </NextLink>
 
     )
-})
+});
+
+
 
 export default Link;
