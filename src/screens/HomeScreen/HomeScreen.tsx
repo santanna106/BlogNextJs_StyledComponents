@@ -19,13 +19,9 @@ export default function HomeScreen() {
                 alignItems: 'center'
             }}
         >
-            <Link colorVariant="neutral" href="/sobre">
-                Vá para a página Sobre
-            </Link>
-            <Link  colorVariant="neutral" href="https://google.com">
-                Vá para o Google
-            </Link>
+          
             <Background />
+            {/*
             <Menu />
             <Feed>
                 <Feed.Header />
@@ -39,6 +35,7 @@ export default function HomeScreen() {
 
             </Feed>
             <Footer />
+            */}
 
         </Box>
     )

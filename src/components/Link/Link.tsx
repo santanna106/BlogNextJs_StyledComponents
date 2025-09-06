@@ -10,7 +10,7 @@ interface LinkProps {
     children: React.ReactNode;
     styleSheet?: StyleSheet;
     variant?: ThemeTypographyVariants;
-    colorVariant: 'primary' | 'accent' | 'neutral' | 'success' | 'warning' | 'error';
+    colorVariant: 'primary' | 'accent' | 'neutral' | 'success' | 'warning' | 'negative';
     colorVariantEnabled?: boolean;
 }
 
@@ -20,26 +20,22 @@ interface LinkProps {
 const Link = React.forwardRef(({
     href,
     children,
-    colorVariant ,
+    colorVariant='primary' ,
     styleSheet,
     colorVariantEnabled,
     ...props }: LinkProps, ref) => {
 
 
 
-    let colorVariantIndex = 'primary'
-    if(colorVariant){
-        colorVariantIndex = colorVariant;
-    }
     
 
     const currentColorSet = {
-        color: theme.colors[ 'primary'].x500 ,
+        color: theme.colors[colorVariant ].x500 ,
         hover: {
-            color: theme.colors[ 'primary'].x400,
+            color: theme.colors[colorVariant ].x400,
         },
         focus: {
-            color: theme.colors[ 'primary'].x600,
+            color: theme.colors[colorVariant].x600,
         }
     };
 
@@ -71,6 +67,7 @@ const Link = React.forwardRef(({
     }
 
 
+   
 
     return (
         <NextLink href={href} passHref>

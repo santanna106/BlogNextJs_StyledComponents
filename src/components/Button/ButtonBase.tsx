@@ -11,7 +11,7 @@ const StyledButton = styled(Text) <any>`
 
 `;
 
-interface ButtonBase {
+export interface ButtonBaseProps {
     href?: string;
     children: React.ReactNode;
     textVariant?: ThemeTypographyVariants;
@@ -25,7 +25,7 @@ export default function ButtonBase({
     children,
     styleSheet,
     ...props
-}: ButtonBase) {
+}: ButtonBaseProps) {
     const router = useRouter();
     const ref = useRef<HTMLButtonElement>(null);
     useRipple(ref,{

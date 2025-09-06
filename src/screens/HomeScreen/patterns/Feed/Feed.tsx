@@ -43,7 +43,7 @@ Feed.Header = () => {
                     alt="Imagem de Perfil de Gabriel"
                 />
             </Button.Base>
-            <Link colorVariant="error" href="/sobre">
+            <Link colorVariant="negative" href="/sobre">
                 <Icon name="youtube" size="xl" />
             </Link>
 
