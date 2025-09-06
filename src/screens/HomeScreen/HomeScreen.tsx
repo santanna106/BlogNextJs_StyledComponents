@@ -14,13 +14,19 @@ export default function HomeScreen() {
         <Box
             tag="main"
             styleSheet={{
-                backgroundColor: theme.colors.positive.x100,
+                backgroundColor: theme.colors.neutral.x000,
                 flex: 1,
                 alignItems: 'center'
             }}
         >
-          
+
             <Background />
+            <Menu />
+            <Feed>
+                <Feed.Header />
+                <Feed.Posts />
+            </Feed>
+
             {/*
             <Menu />
             <Feed>
@@ -34,8 +40,11 @@ export default function HomeScreen() {
                 <Feed.Posts />
 
             </Feed>
-            <Footer />
+            
             */}
+
+
+            <Footer />
 
         </Box>
     )
